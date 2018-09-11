@@ -4,11 +4,14 @@ Brian's Mac Dev Setup
 
 - set up gestures
 - clean up dock
+- update dock settings
+  - hidden app setting (`defaults write com.apple.dock showhidden -bool TRUE; killall Dock`)
 - open terminal
 - install homebrew (`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`)
   - enter to continue with installations
+- install dockutil(`brew install dockutil`)
 - install Google Chrome (`brew install google-chrome`)
-  - open application folder & add Chrome to dock
+  - add chrome to dock (`dockutil --add /Applications/Google\ Chrome.app`)
   - open Chrome and begin setup with personal and work sign-ins
 - install Slack (`brew cask install slack`)
   - login to slack
@@ -25,7 +28,12 @@ Brian's Mac Dev Setup
     - clone the envSetup repo (`git clone https://github.com/BrianJFeldman/envSetup.git`)
       - copy the .zshrc to root from the repo (`cp ./envSetup/.zshrc ~/.zshrc`)
 - install vscode (`brew cask install visual-studio-code`)
+  - add VSCode to dock (`dockutil --add /Applications/Visual\ Studio\ Code.app`)
+  - open VSCode and install the `settings sync` extension
+    - download settings using the gist API (I store mine in my email) and the gist ID that follows the username in the URL to the gist
+- install xcode from the appstore(possibly not needed?)
 - install python (`brew install python`)
-- install xcode from the appstore
-
-- install nvm via cURL(`curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash`)
+- install golang (`brew install golang && mkdir -p $GOPATH $GOPATH/src $GOPATH/pkg $GOPATH/bin`)
+- install nvm via cURL(`brew install nvm && mkdir ~/.nvm && "export NVM_DIR="${XDG_CONFIG_HOME/:-$HOME/.}nvm" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm" >> ~/.zshrc`)
+  - install node(`nvm install node && nvm use node`)
+- install common packages global (`npm install -g yarn typescript express gulp grunt webpack`)
