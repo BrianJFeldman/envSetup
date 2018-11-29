@@ -41,6 +41,7 @@ Brian's Mac Dev Setup
   - install node(`nvm install node && nvm use node`)
 - install common packages global (`npm install -g yarn typescript express gulp grunt webpack`)
 - install spectacle (`brew cask install spectacle`)
+- install kubectl (`brew install kubernetes-ctl`)
 - install Postman & add to dock (`brew cask install postman && dockutil --add /Applications/Postman.app`)
 - install postico & add to dock (`brew cask install postico && dockutil --add /Applications/Postico.app`)
 - install spotify & add to dock (`brew cask install spotify && dockutil --add /Applications/Spotify.app`)
