@@ -75,7 +75,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-DEFAULT_USER=`brianfeldman`
+export DEFAULT_USER="brianfeldman"
 prompt_context(){}
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -105,5 +105,20 @@ prompt_context(){}
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias python=python3
 alias pip=pip3
+
+alias activate='source .venv/bin/activate && pip install -r requirements.txt -r requirements-dev.txt'
+
 export NVM_DIR="$HOME/.nvm"
   . "/usr/local/opt/nvm/nvm.sh"
+
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/13/bin
+
+unsetopt inc_append_history
+unsetopt share_history
+
+RPROMPT='%{$fg[yellow]%}[%D{%f/%m/%y} %D{%L:%M:%S}] '
+export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
