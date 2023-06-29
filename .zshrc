@@ -1,6 +1,22 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  brew
+  docker
+  dotenv
+  git
+  npm
+  pip
+  z
+)
+
+ZSH_DISABLE_COMPFIX=true
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/brianfeldman/.oh-my-zsh"
 
@@ -57,26 +73,12 @@ ZSH_THEME="agnoster"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  brew
-  docker
-  dotenv
-  git
-  npm
-  pip
-  z
-)
-
 source $ZSH/oh-my-zsh.sh
+source ~/zsh-plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # User configuration
 
 export DEFAULT_USER="brianfeldman"
-prompt_context(){}
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -90,7 +92,9 @@ prompt_context(){}
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCH=arm64
+# export ARCHFLAGS="-arch arm64"
+export ARCHFLAGS="-arch arm64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -104,21 +108,23 @@ prompt_context(){}
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias python=python3
+alias python3=python3.9
 alias pip=pip3
 
-alias activate='source .venv/bin/activate && pip install -r requirements.txt -r requirements-dev.txt'
+alias activate='source .venv/bin/activate && pip install  --compile --no-cache-dir -r requirements.txt -r requirements-dev.txt'
 
-export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
-
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/13/bin
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+export NODE_OPTIONS="--max-old-space-size=8192" # Increase to 8 GB
 
 unsetopt inc_append_history
 unsetopt share_history
 
-RPROMPT='%{$fg[yellow]%}[%D{%f/%m/%y} %D{%L:%M:%S}] '
-export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HISTSIZE=4000
+SAVEHIST=2000
 
+RPROMPT='%{$fg[yellow]%}[%D{%f/%m/%y} %D{%L:%M:%S}] '
+export PATH=/opt/homebrew/bin:$PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
